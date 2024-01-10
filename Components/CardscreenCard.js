@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
-import { DocumentMinusIcon, DocumentPlusIcon, MapIcon, StarIcon } from 'react-native-heroicons/outline'
+// import { DocumentMinusIcon, DocumentPlusIcon, MapIcon, StarIcon } from 'react-native-heroicons/outline'
 
 
 const CardscreenCard = ({callbackCard,item}) => {

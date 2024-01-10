@@ -15,7 +15,6 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import FormScreen from './FormScreen';
 import CardList from '../Components/CardList';
-import CheckBox from '@react-native-community/checkbox';
 {/* <Entypo name="chevron-small-down" size={24} color="black" /> */ }
 {/* <Entypo name="chevron-small-up" size={24} color="black" /> */ }
 let id = 0;
@@ -25,7 +24,7 @@ const HomeScreen = () => {
     const [load, setLoad] = useState(false);
     const [filterProducts, setFilterProducts] = useState([]);
     const [selectCategory, setSelectCategory] = useState([]);
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    const [isChecked, setChecked] = useState(false);
 
 
     useFocusEffect(
@@ -65,6 +64,7 @@ const HomeScreen = () => {
     const handleSheetChanges = useCallback((index) => {
         console.log('handleSheetChanges', index);
         let filterProduct = productVal;
+        console.log('filterProduct', filterProduct);
         let emptyArrKeys = []
         let uniqueCategories = new Set();
         for (let i = 0; i < filterProduct.length - 1; i++) {
@@ -197,25 +197,22 @@ const HomeScreen = () => {
                                 <Text>{JSON.stringify(selectCategory)}</Text>
                                 {
                                     selectCategory.map(_cat => {
-                                        console.log('_cat...',_cat);
+                                        console.log('_cat...', _cat);
                                         return (
-                                            <Text>kk</Text>
+                                            <>
+                                                <Text>{JSON.stringify(selectCategory)}</Text>
+                                              
+                                            </>
+
                                         )
                                     })
                                 }
-                                <CheckBox
-                                                disabled={false}
-                                                value={toggleCheckBox}
-                                                onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                                            />
-
                             </View>
                         </BottomSheetModal>
-
                     </ScrollView>
 
                 </View>
-
+                
                 <View style={{ paddingBottom: 10 }}>
                     <CardList productVal={productVal} filterValue={filterProducts} />
                 </View>
