@@ -9,6 +9,8 @@ const { width, height } = Dimensions.get('window');
 const OnboardScreen = (props) => {
   const [curentIndex, setCurrIndex] = React.useState(0)
 
+  const navObjFooter= props.navigation;
+
   const currSlideIndex = (e) => {
     // console.log('event', e);
     const contentOffsetX = e.nativeEvent.contentOffset.x;
@@ -16,7 +18,6 @@ const OnboardScreen = (props) => {
     console.log('currentIndex', currentIndex);
     setCurrIndex(currentIndex);
    };
-
 
   const renderFn = (params) => {
     // console.log('props============', props.item);
@@ -43,14 +44,13 @@ const OnboardScreen = (props) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primary }}>
       <StatusBar backgroundColor={COLORS.primary} />
-
       <FlatList
         data={dataOnboard}
         onMomentumScrollEnd={currSlideIndex}
         renderItem={renderFn}
         keyExtractor={item => item.id}
         horizontal
-        contentContainerStyle={{ height: height * 0.75, }}
+        contentContainerStyle={{ height: height * 0.75,}}
         showsHorizontalScrollIndicator={false}
         pagingEnabled
       />
@@ -59,8 +59,6 @@ const OnboardScreen = (props) => {
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
-          // marginTop:20,
-          // backgroundColor:'red'
         }}>
         {
           dataOnboard.map((_, index) =>
@@ -76,16 +74,15 @@ const OnboardScreen = (props) => {
               width: 25
             }
             ]} key={index} />
-
           )
         }
       </View>
       <Footer width={width} height={height} navigation={props.navigation}/>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default OnboardScreen
+export default OnboardScreen;
 
 const styles = StyleSheet.create({
   subtxtStyl: {
@@ -101,4 +98,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10
   }
-})
+});

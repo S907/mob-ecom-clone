@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { styles } from "./styles/footer.style";
 import { COLORS } from "../Pages/constants/color";
@@ -18,8 +18,7 @@ export const Footer = (props) => {
                 width: props.width / 4, 
                 height: props.height / 25,
                 borderColor: COLORS.white,
-            }]}
-            
+            }]}            
             onPress={()=>props.navigation.navigate('Home')}
             >
                 <Text style={{ textAlign: 'center', color: COLORS?.white }}>Next</Text>
