@@ -51,3 +51,25 @@ export const cardDataApi = [
     "title": "Title 10"
   }
 ]
+
+export const dataOnboard = [
+  {
+    id:'1',
+    image:require('../assets/onboard/Inspiration.png'),
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+  },
+  {
+    id:'2',
+    image:require('../assets/onboard/mlogin.png'),
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+  },
+  {
+    id:'3',
+    image:require('../assets/onboard/sofa.png'),
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+  }
+];
+

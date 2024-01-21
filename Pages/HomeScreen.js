@@ -194,13 +194,13 @@ const HomeScreen = () => {
                         >
                             <View style={styles.contentContainer}>
                                 <Text>Awesome 🎉</Text>
-                                <Text>{JSON.stringify(selectCategory)}</Text>
+                                <Text key={id++}>{JSON.stringify(selectCategory)}</Text>
                                 {
-                                    selectCategory.map(_cat => {
+                                    selectCategory.map((_cat,index) => {
                                         console.log('_cat...', _cat);
                                         return (
                                             <>
-                                                <Text>{JSON.stringify(selectCategory)}</Text>
+                                                <Text key={index}>{JSON.stringify(selectCategory)}</Text>
                                               
                                             </>
 
