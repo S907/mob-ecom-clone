@@ -1,20 +1,28 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { COLORS } from "../Pages/OnboardScreen";
 import { styles } from "./styles/footer.style";
+import { COLORS } from "../Pages/constants/color";
 
-export const Footer = ({ width, height }) => {
+export const Footer = (props) => {
+    console.log('footer', props);
     return (
-        <View style={[styles.viewContainer, { height: height * 0.25, }]}>
+        <View style={[styles.viewContainer, { height: props.height * 0.25, }]}>
             <TouchableOpacity style={[styles.opcaityOne, {
-                width: width / 4, height: height / 25,
+                width: props.width / 4, 
+                height: props.height / 25,
+                borderColor: COLORS.white,
             }]}>
-                <Text style={{ textAlign: 'center', color: COLORS.white }}>Skip</Text>
+                <Text style={{ textAlign: 'center', color: COLORS?.white }}>Skip</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.opcaityTwo, {
-                width: width / 4, height: height / 25,
-            }]}>
-                <Text style={{ textAlign: 'center', color: COLORS.white }}>Next</Text>
+                width: props.width / 4, 
+                height: props.height / 25,
+                borderColor: COLORS.white,
+            }]}
+            
+            onPress={()=>props.navigation.navigate('Home')}
+            >
+                <Text style={{ textAlign: 'center', color: COLORS?.white }}>Next</Text>
             </TouchableOpacity>
         </View>
     );

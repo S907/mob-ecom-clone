@@ -14,12 +14,10 @@ export const styles = StyleSheet.create({
     opcaityOne: {
         borderWidth: 1,
         marginLeft: 10,
-        borderColor: COLORS.white,
         justifyContent: 'center'
     },
     opcaityTwo: {
         borderWidth: 1,
-        borderColor: COLORS.white,
         marginRight: 10,
         justifyContent: 'center'
     }
