@@ -44,7 +44,6 @@ const FormScreen = () => {
     // setPhoto(result.assets[0].uri);
     setFormData({...formData,image:result.assets[0].uri});
   };
-  console.log('getPhoto',getPhoto);
 
   const handleSubmit = () => {
     console.log('Form Data:', formData);
@@ -105,13 +104,10 @@ const FormScreen = () => {
           data={data}
           onChange={item => {
             console.log('item-=====',item);
-            // setValue(item.value);
             setFormData({...formData,dropdown:item.value})
-            // setIsFocus(false);
           }}
 
         />
-
       <Text>Phone Number:</Text>
       <TextInput
         style={styles.input}
