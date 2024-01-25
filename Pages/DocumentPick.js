@@ -7,30 +7,31 @@ const DocumentPick = () => {
     const [arrObj, setArrObj] = useState([]);
     const [fileFields, setFileFields] = useState([{ id: 1, value: '', uploaded: false }]);
     const [uploadedFiles, setUploadedFiles] = useState([]);
-  
+    const [newDocumentName, setNewDocumentName] = useState('');
+
     const handleUploadPress = async (id) => {
-      // Add your logic for handling the upload here
-      console.log('id',id);
-      const updatedFields = fileFields.map(field =>
-        field.id === id ? { ...field, uploaded: true } : field
-      );
-      let value = await pickDoc()
-      console.log('value====', value);
-      console.log('handleuploadpress====', updatedFields);
+        // Add your logic for handling the upload here
+        console.log('id', id);
+        const updatedFields = fileFields.map(field =>
+            field.id === id ? { ...field, uploaded: true } : field
+        );
+        let value = await pickDoc()
+        console.log('value====', value);
+        console.log('handleuploadpress====', updatedFields);
 
-    //   setFileFields(updatedFields);
-  
-    //   // Update the uploaded files list
-    //   const uploadedFile = fileFields.find(field => field.id === id);
-    //   setUploadedFiles([...uploadedFiles, uploadedFile.value]);
+        //   setFileFields(updatedFields);
+
+        //   // Update the uploaded files list
+        //   const uploadedFile = fileFields.find(field => field.id === id);
+        //   setUploadedFiles([...uploadedFiles, uploadedFile.value]);
 
     };
-  
+
     const handleAddField = () => {
-      const newField = { id: Date.now(), value: '', uploaded: false };
-      setFileFields([...fileFields, newField]);
+        const newField = { id: Date.now(), value: '', uploaded: false };
+        setFileFields([...fileFields, newField]);
     };
-    const pickDoc = async (e) => {
+    const pickDoc = async () => {
         // console.log('eeeeee=====',e);
         try {
             const doc = await DocumentPicker.getDocumentAsync();
@@ -54,18 +55,18 @@ const DocumentPick = () => {
 
             if (doc.type === 'success') {
                 const { mimeType, uri, name } = doc;
-                
+
                 // Add your logic to filter documents based on mime types
                 if (mimeType !== 'image/png' && mimeType !== 'image/jpg' && mimeType !== 'application/pdf') {
-                  return;
+                    return;
                 }
-        
+
                 // Create a new object to represent the selected document
                 const newDocument = { mimeType, uri, name };
-        
+
                 // Update the state with the new document
                 setUploadedFiles((prevFiles) => [...prevFiles, newDocument]);
-              }
+            }
         } catch (error) {
             console.log('Err====', error);
         }
@@ -91,7 +92,7 @@ const DocumentPick = () => {
                     {/* <Text style={styles.text}>Sign in with Facebook</Text> */}
                 </LinearGradient>
             </View>
-            <View style={styles.containero}>
+            {/* <View style={styles.containero}>
                 <ScrollView style={styles.scrollView}>
                     {fileFields.map((field, index) => (
                         <View key={field.id} style={styles.fieldContainer}>
@@ -122,6 +123,30 @@ const DocumentPick = () => {
                     // value={uploadedFiles.join(', ')}
                     editable={false}
                 />
+            </View> */}
+
+            <View style={styles.containero}>
+                {uploadedFiles.length === 0 ? (
+                    <View>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Type document name here..."
+                            value={newDocumentName}
+                            onChangeText={setNewDocumentName}
+                        />
+                        <TouchableOpacity style={styles.uploadButton} onPress={pickDoc}>
+                            <Text>Upload Document</Text>
+                        </TouchableOpacity>
+                    </View>
+                ) : (
+                    <ScrollView style={styles.scrollView}>
+                        {uploadedFiles.map((document, index) => (
+                            <View key={document.name} style={styles.uploadedFileContainer}>
+                                <Text>{`File ${index + 1}: ${document.name}`}</Text>
+                            </View>
+                        ))}
+                    </ScrollView>
+                )}
             </View>
         </SafeAreaView>
 
@@ -155,48 +180,79 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#fff',
     },
+
+    // containero: {
+    //     flex: 1,
+    //     padding: 20,
+    //   },
+    //   scrollView: {
+    //     marginBottom: 20,
+    //   },
+    //   fieldContainer: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between',
+    //     marginBottom: 10,
+    //   },
+    //   textInput: {
+    //     flex: 1,
+    //     padding: 10,
+    //     borderRadius: 8,
+    //     borderColor: 'gray',
+    //     borderWidth: 1,
+    //     marginRight: 10,
+    //   },
+    //   uploadButton: {
+    //     padding: 10,
+    //     borderRadius: 8,
+    //     backgroundColor: 'lightblue',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //   },
+    //   disabledButton: {
+    //     backgroundColor: 'lightgray',
+    //   },
+    //   addButton: {
+    //     padding: 10,
+    //     borderRadius: 8,
+    //     backgroundColor: 'lightblue',
+    //     alignItems: 'center',
+    //     marginBottom: 10,
+    //   },
+    //   uploadedFilesInput: {
+    //     padding: 10,
+    //     borderRadius: 8,
+    //     borderColor: 'gray',
+    //     borderWidth: 1,
+    //     marginBottom: 10,
+    //   },
+
+
     containero: {
         flex: 1,
         padding: 20,
-      },
-      scrollView: {
+    },
+    scrollView: {
         marginBottom: 20,
-      },
-      fieldContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-      },
-      textInput: {
-        flex: 1,
+    },
+    uploadedFileContainer: {
         padding: 10,
         borderRadius: 8,
         borderColor: 'gray',
         borderWidth: 1,
-        marginRight: 10,
-      },
-      uploadButton: {
+        marginBottom: 10,
+    },
+    textInput: {
+        padding: 10,
+        borderRadius: 8,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 10,
+    },
+    uploadButton: {
         padding: 10,
         borderRadius: 8,
         backgroundColor: 'lightblue',
         alignItems: 'center',
         justifyContent: 'center',
-      },
-      disabledButton: {
-        backgroundColor: 'lightgray',
-      },
-      addButton: {
-        padding: 10,
-        borderRadius: 8,
-        backgroundColor: 'lightblue',
-        alignItems: 'center',
-        marginBottom: 10,
-      },
-      uploadedFilesInput: {
-        padding: 10,
-        borderRadius: 8,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 10,
-      },
+    },
 })
