@@ -6,6 +6,7 @@ import Signup from '../Pages/Signup';
 import HomeScreen from '../Pages/HomeScreen';
 import OnboardScreen from '../Pages/OnboardScreen';
 import FormScreen from '../Pages/FormScreen';
+import DocumentPick from '../Pages/DocumentPick';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export default function Navigation() {
                 {/* <Stack.Screen name="SignUp" component={Signup} 
                 options={{headerShown:false}}
             /> */}
-                <Stack.Screen name="FormScreen" component={FormScreen} 
+                <Stack.Screen name="DocumentPick" component={DocumentPick} 
                 options={{headerShown:false}}
                 />
                 <Stack.Screen name="Onboard" component={OnboardScreen} 
