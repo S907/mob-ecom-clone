@@ -40,6 +40,8 @@ const DocumentPick = () => {
                 console.log('dockey', key);
                 if (key === 'assets') {
                     console.log('here i am');
+                    let docVal= doc[key][0];
+                    console.log('docVal===',docVal);
                     let mimeVal = doc[key][0].mimeType;
                     let getFileUri = doc[key][0].uri;
                     let getFileName = doc[key][0].name;
@@ -48,10 +50,12 @@ const DocumentPick = () => {
                     console.log('getFileUri', mimeVal);
                     console.log('getFileUri', getFileUri);
                     console.log('getFileUri', getFileName);
-                    return { mimeVal, getFileUri, getFileName}
-                    emptyArr.push()
+                     { mimeVal, getFileUri, getFileName}
+                     emptyArr.push(docVal)
+                    }
                 }
-            }
+                setUploadedFiles(emptyArr)
+                console.log('uploadedFiles',uploadedFiles);
             // setArrObj(doc)
             // console.log('doc=====',doc.assets[0]);
         } catch (error) {
@@ -91,7 +95,7 @@ const DocumentPick = () => {
                             />
                             <TouchableOpacity
                                 style={[styles.uploadButton, field.uploaded ? styles.disabledButton : null]}
-                                onPress={() => handleUploadPress(field.id)}
+                                onPress={() => pickDoc()}
                                 disabled={field.uploaded}
                             >
                                 <Text>Upload</Text>
@@ -105,7 +109,7 @@ const DocumentPick = () => {
                 <TextInput
                     style={styles.uploadedFilesInput}
                     placeholder="Uploaded Files"
-                    value={uploadedFiles.join(', ')}
+                    // value={uploadedFiles.join(', ')}
                     editable={false}
                 />
             </View>
