@@ -34,35 +34,45 @@ const DocumentPick = () => {
         // console.log('eeeeee=====',e);
         try {
             const doc = await DocumentPicker.getDocumentAsync();
-            console.log(doc);
-            let emptyArr = [];
-            for (const key in doc) {
-                console.log('dockey', key);
-                if (key === 'assets') {
-                    console.log('here i am');
-                    let docVal= doc[key][0];
-                    console.log('docVal===',docVal);
-                    let mimeVal = doc[key][0].mimeType;
-                    let getFileUri = doc[key][0].uri;
-                    let getFileName = doc[key][0].name;
-                    if (mimeVal !== 'image/png' && mimeVal !== 'image/jpg' && mimeVal !== 'application/pdf') return
-                    console.log('Here');
-                    console.log('getFileUri', mimeVal);
-                    console.log('getFileUri', getFileUri);
-                    console.log('getFileUri', getFileName);
-                     { mimeVal, getFileUri, getFileName}
-                     emptyArr.push(docVal)
-                    }
-                }
-                setUploadedFiles(emptyArr)
-                console.log('uploadedFiles',uploadedFiles);
+            // let emptyArr = [];
+            // for (const key in doc) {
+            //     if (key === 'assets') {
+            //         let docVal= doc[key][0];
+            //         console.log('docVal===',docVal);
+            //         let mimeVal = doc[key][0].mimeType;
+            //         let getFileUri = doc[key][0].uri;
+            //         let getFileName = doc[key][0].name;
+            //         if (mimeVal !== 'image/png' && mimeVal !== 'image/jpg' && mimeVal !== 'application/pdf') return
+            //          { mimeVal, getFileUri, getFileName}
+            //          emptyArr.push(docVal)
+            //         }
+            //     }
+            //     setUploadedFiles(emptyArr)
+            //     console.log('uploadedFiles',uploadedFiles);
             // setArrObj(doc)
             // console.log('doc=====',doc.assets[0]);
+
+            if (doc.type === 'success') {
+                const { mimeType, uri, name } = doc;
+                
+                // Add your logic to filter documents based on mime types
+                if (mimeType !== 'image/png' && mimeType !== 'image/jpg' && mimeType !== 'application/pdf') {
+                  return;
+                }
+        
+                // Create a new object to represent the selected document
+                const newDocument = { mimeType, uri, name };
+        
+                // Update the state with the new document
+                setUploadedFiles((prevFiles) => [...prevFiles, newDocument]);
+              }
         } catch (error) {
             console.log('Err====', error);
         }
+    };
 
-    }
+    console.log('uploaded files', uploadedFiles);
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'slateblue' }}>
             <View style={styles.container}>
