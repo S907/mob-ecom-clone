@@ -17,9 +17,9 @@ export default function Navigation() {
                 {/* <Stack.Screen name="SignUp" component={Signup} 
                 options={{headerShown:false}}
             /> */}
-                <Stack.Screen name="DocumentPick" component={DocumentPick} 
+                {/* <Stack.Screen name="DocumentPick" component={DocumentPick} 
                 options={{headerShown:false}}
-                />
+                /> */}
                 <Stack.Screen name="Onboard" component={OnboardScreen} 
                 options={{headerShown:false}}
                 />
