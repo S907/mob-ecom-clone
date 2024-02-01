@@ -7,6 +7,7 @@ import HomeScreen from '../Pages/HomeScreen';
 import OnboardScreen from '../Pages/OnboardScreen';
 import FormScreen from '../Pages/FormScreen';
 import DocumentPick from '../Pages/DocumentPick';
+import SignPdf from '../Pages/SignPdf';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,9 @@ export default function Navigation() {
                 {/* <Stack.Screen name="DocumentPick" component={DocumentPick} 
                 options={{headerShown:false}}
                 /> */}
+                <Stack.Screen name="SignPdf" component={SignPdf} 
+                options={{headerShown:false}}
+                />
                 <Stack.Screen name="Onboard" component={OnboardScreen} 
                 options={{headerShown:false}}
                 />
