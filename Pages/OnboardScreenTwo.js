@@ -1,11 +1,36 @@
-import { FlatList, ImageBackground, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { FlatList, ImageBackground, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import React from 'react';
 import { Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { styles } from './styles/onboardTwo';
 const data = [
   { id: '1', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' },
   { id: '2', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' },
   { id: '3', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' }
+]
+const dataTwo = [
+  {
+    id: '1',
+    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+
+  },
+  {
+    id: '2',
+    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+
+  },
+
+  {
+    id: '3',
+    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+  }
 ]
 const OnboardScreenTwo = () => {
   const { height, width } = useWindowDimensions();
@@ -75,8 +100,9 @@ const OnboardScreenTwo = () => {
       <View>
         <Text>Heiii</Text>
       </View>
-      <View style={{ flex: 1, backgroundColor: 'gray' }}>
-        <Text style={{ textAlign: 'center' }}>OnboardScreen</Text>
+      <View style={{ flex: 1, backgroundColor: 'gray', }}>
+
+        {/* home carousel screen wrapper */}
         <View style={{ margin: 10, borderColor: 'white', borderRadius: 3, borderWidth: 3 }}>
           <FlatList
             data={data}
@@ -100,6 +126,100 @@ const OnboardScreenTwo = () => {
             showsHorizontalScrollIndicator={false}
           />
         </View>
+        {/* home carousel screen wrapper */}
+
+        {/* onboard carousel wrapper */}
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
+          <Text style={{ textAlign: 'center', }}>OnboardScreen</Text>
+          <View style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+          }}>
+            <Image style={{ height: 200, }} source={require('../assets/wave1.png')} />
+          </View>
+          <View style={{
+            flex: 3, 
+            // backgroundColor: 'green',
+          }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, marginTop: 40 }}>
+              <Carousel
+                data={dataTwo}
+                renderItem={({ item, index }) => {
+                  console.log('item carousel', item);
+                  return (
+                    <View
+                      key={item.id}
+                      style={{
+                        alignItems: 'center',
+                        // backgroundColor:'red',
+                        flex: 1,
+                      }}>
+                      <Image
+                        source={{
+                          uri: item?.src
+                        }}
+                        style={{ width: 300, height: 300, }}
+                        key={item.id}
+                      />
+                      <Text style={{
+                        fontFamily: 'Mulish-ExtraBold',
+                        fontSize: 20,
+                        // backgroundColor:'green',    
+                        color: 'black',
+                        fontWeight: 'bold'
+                      }}>{item.title}</Text>
+                      <Text style={{ paddingTop: 10, width: '90%', textAlign: 'center', color: 'black', }}>{item.subTilte}</Text>
+                    </View>
+                  );
+                }}
+                sliderWidth={400}
+                itemWidth={400}
+                // onSnapToItem={index => setIndex(index)}
+                autoplayInterval={4000}
+                autoplay={true}
+                enableMomentum={false}
+                lockScrollWhileSnapping={true}
+                loop={true}
+              />
+
+            </View>
+            {/* <View style={styles.paginationBullet}>
+              <Pagination dotsLength={dataTwo.length}  />
+            </View> */}
+          </View>
+          <View style={{
+            width: '100%',
+            flex: 1,
+            alignItems: 'center',
+            zIndex: 2
+          }}>
+            <TouchableOpacity
+              style={styles.inputAll}
+              onPress={() => props.navigation.navigate('Login')}>
+              <Text style={styles.textStyleOne}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.inputAll}
+              onPress={() => props.navigation.navigate('Signup')}>
+              <Text style={styles.textStyleTwo}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{
+            // backgroundColor:'red',
+            position: 'absolute',
+            bottom: 0,
+            right: 200,
+            width: '100%',
+            height: 200,
+          }}>
+            <Image source={require('../assets/wave2.png')} />
+          </View>
+        </View>
+        {/* onboard carousel wrapper */}
+
       </View>
     </View>
   )
@@ -108,7 +228,7 @@ const OnboardScreenTwo = () => {
 
 export default OnboardScreenTwo
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({})
 
 
 
