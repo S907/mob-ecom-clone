@@ -73,3 +73,31 @@ export const dataOnboard = [
   }
 ];
 
+export const data = [
+  { id: '1', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' },
+  { id: '2', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' },
+  { id: '3', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' }
+]
+export const dataTwo = [
+  {
+    id: '1',
+    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+
+  },
+  {
+    id: '2',
+    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+
+  },
+
+  {
+    id: '3',
+    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
+    title: 'Lorem ipsum dolor sit amet',
+    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+  }
+]

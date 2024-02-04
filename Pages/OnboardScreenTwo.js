@@ -4,35 +4,9 @@ import { Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { styles } from './styles/onboardTwo';
-const data = [
-  { id: '1', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' },
-  { id: '2', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' },
-  { id: '3', src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png' }
-]
-const dataTwo = [
-  {
-    id: '1',
-    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
-    title: 'Lorem ipsum dolor sit amet',
-    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
+import { data, dataTwo } from '../Api/cardApi';
 
-  },
-  {
-    id: '2',
-    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
-    title: 'Lorem ipsum dolor sit amet',
-    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
-
-  },
-
-  {
-    id: '3',
-    src: 'https://images.yourstory.com/cs/2/d99b1110116911ed9e63f54395117598/Rapido-04-1705071387363.png',
-    title: 'Lorem ipsum dolor sit amet',
-    subTilte: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue a mauris sit amet tristique.'
-  }
-]
-const OnboardScreenTwo = () => {
+const OnboardScreenTwo = (props) => {
   const { height, width } = useWindowDimensions();
   const ITEM_WIDTH = width * .76;
   const ITEM_HEIGHT = ITEM_WIDTH * 1.47;
@@ -197,8 +171,8 @@ const OnboardScreenTwo = () => {
           }}>
             <TouchableOpacity
               style={styles.inputAll}
-              onPress={() => props.navigation.navigate('Login')}>
-              <Text style={styles.textStyleOne}>Login</Text>
+              onPress={() => props.navigation.navigate('ListAccordion')}>
+              <Text style={styles.textStyleOne}>List Accordion</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.inputAll}
