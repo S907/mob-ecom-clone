@@ -151,11 +151,11 @@ const OnboardScreenTwo = (props) => {
                 sliderWidth={400}
                 itemWidth={400}
                 // onSnapToItem={index => setIndex(index)}
-                autoplayInterval={4000}
-                autoplay={true}
+                // autoplayInterval={4000}
+                // autoplay={true}
                 enableMomentum={false}
                 lockScrollWhileSnapping={true}
-                loop={true}
+                // loop={true}
               />
 
             </View>
@@ -176,8 +176,8 @@ const OnboardScreenTwo = (props) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.inputAll}
-              onPress={() => props.navigation.navigate('Signup')}>
-              <Text style={styles.textStyleTwo}>Sign up</Text>
+              onPress={() => props.navigation.navigate('SignPdf')}>
+              <Text style={styles.textStyleTwo}>SignPdf Screen</Text>
             </TouchableOpacity>
           </View>
 
