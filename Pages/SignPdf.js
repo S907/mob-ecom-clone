@@ -63,14 +63,14 @@ const SignPdf = (props) => {
     
           // Make the API call to upload the file
           const response = await fetch(
-            'https://dev.jbmtpl.com/printdoc/printdoc/api/order',
+            '....',
             {
               method: 'POST',
               body: fileData,
               headers: {
                 // Add any headers needed for your API request
                 'Content-Type': 'multipart/form-data',
-                Keydata: '9566589658545896589',
+                Keydata: '.....',
               },
             },
           );
