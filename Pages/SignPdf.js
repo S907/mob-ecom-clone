@@ -20,6 +20,8 @@ const SignPdf = (props) => {
     const [file, setFile] = useState([{ file: null }])
     const [selectedOption, setSelectedOption] = useState(null);
     const [checked, setChecked] = React.useState(false);
+    const [orderId, setOrderId] = React.useState('');
+    const [resData,setResData] =React.useState([]);
     // const [fileName,setFileName]=useState('')
     const handleInput = () => {
 
@@ -30,6 +32,8 @@ const SignPdf = (props) => {
             setFile(prev=>[{file:docRes.name},...prev]);
             // setFileName(docRes.assets[0].name)
             console.log(docRes);
+            const currentOrderId = orderId;
+            await uploadFileToServer(docRes,currentOrderId)
           } catch (error) {
             console.log("Error while selecting file: ", error);
           }
@@ -42,19 +46,20 @@ const SignPdf = (props) => {
         })
     };
 
-    const uploadFileToServer = async (doc) => {
-        console.log('fileCopyUri======', doc);
+    const uploadFileToServer = async (doc, currentOrderId) => {
+        console.log('currentOrderId======', currentOrderId, orderId, doc);
         // return;
         try {
           // Construct the FormData object for the file upload
           const fileData = new FormData();
           fileData.append('image', {
-            uri: doc.uri,
-            type: doc.type,
-            name: doc.name,
+            uri: doc.assets[0].uri,
+            type: doc.assets[0].mimeType,
+            name: doc.assets[0].name,
           });
-          fileData.append('order_id', '');
+          fileData.append('order_id', currentOrderId);
           fileData.append('user_id', '131');
+          console.log('fileData===========', fileData);
     
           // Make the API call to upload the file
           const response = await fetch(
@@ -69,18 +74,33 @@ const SignPdf = (props) => {
               },
             },
           );
-    
           // Handle the response from the server
           const responseData = await response.json();
           console.log('Server response:', responseData);
+          // setLoadState(false)
+          if (responseData.status === 'success') {
+            setResData(responseData?.data);
+            // setLoadState(true)
+            if (!currentOrderId) {
+              setOrderId(
+                prevOrderId => responseData?.data[0].order_id || prevOrderId,
+              );
+              
+            }
+          } else {
+            console.error('Invalid response', responseData);
+          }
         } catch (error) {
           console.error('Error uploading file:', error);
         }
       };
-      console.log('filessss=======', file);
+      console.log('filessss=======', file, orderId);
+      const handleNavigation=()=>{
+        props.navigation.navigate('PayList',{orderId})
+      }
     return (
         <View>
-            <Button title='Onboard Page'
+            <Button title='OnboardScreenTwo'
                 onPress={() => { props.navigation.navigate('OnboardScreenTwo') }} />
            
 
@@ -93,7 +113,7 @@ const SignPdf = (props) => {
                                 placeholder='Drop a file'
                                 style={styles.textBtn}
                                 editable={false}
-                                value={file.name!==null ? file.name:''}
+                                value={file.file!=='' ? file.file:''}
                             />
                             <TouchableOpacity style={styles.touchBtn} onPress={handleSubmit}>
                                 <Text style={{ fontWeight: 'bold' }}>Submit</Text>
@@ -108,7 +128,10 @@ const SignPdf = (props) => {
                     )
                 }}
             />
-
+                <View style={{width:'30%', marginTop:5, marginLeft:5}}>
+                <Button title='PayList Page Submit'
+                onPress={handleNavigation} />
+                </View>
         </View>
     )
 }

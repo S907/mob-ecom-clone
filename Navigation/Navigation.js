@@ -10,6 +10,8 @@ import DocumentPick from '../Pages/DocumentPick';
 import SignPdf from '../Pages/SignPdf';
 import OnboardScreenTwo from '../Pages/OnboardScreenTwo';
 import ListAccordionScreen from '../Pages/ListAccordionScreen';
+import PayList from '../Pages/PayList';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,9 @@ export default function Navigation() {
                 options={{headerShown:false}}
                 /> */}
                 <Stack.Screen name="OnboardScreenTwo" component={OnboardScreenTwo} 
+                options={{headerShown:false}}
+                />
+                <Stack.Screen name="PayList" component={PayList} 
                 options={{headerShown:false}}
                 />
                 <Stack.Screen name="ListAccordion" component={ListAccordionScreen} 
