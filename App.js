@@ -4,8 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Navigation from './Navigation/Navigation';
 // import Input from './Pages/Input';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { PaperProvider } from 'react-native-paper';
-
+import { PaperProvider } from 'react-native-paper';1
+import OrderNav from './Pages/myOrderFlow/Navigation/OrderNav'
 export default function App() {
  
 
@@ -15,7 +15,9 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar barStyle='dark' />
       <View style={styles.container}>
-        <Navigation />
+        {/* <Navigation /> */}
+        {/* <orderNav /> */}
+        <OrderNav />
       </View>
       </GestureHandlerRootView>
       </PaperProvider>
